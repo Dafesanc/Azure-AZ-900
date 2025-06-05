@@ -1,0 +1,324 @@
+AZURE ESSENTIALS
+
+Lo primero en cotizar son las VM virtual machines
+
+Nivel básico 
+una configuración básica para un desarrollador o un equipo pequeño de desarrollo de maquinas virtuales seria la siguiente:
+
+Costos mensuales para desplegar una información en AZURE para un equipo de hasta 5 desarrolladores, y hasta 3 aplicaciones web (155 a 230 mensuales)
+(1860 - 2760)
+
+Primeros pasos
+Crear cuenta Azure y registrar tarjeta de crédito
+
+
+Despliegue de recrus en azure con Bicep y VScODE
+PRIMERO INSTALAMOS LA EXTENSENION DE BICEP DE VSCODE
+AUNQUE NO ES NECESARIA NOS  DA SUGERENCIAS Y NOS AYUDA A IDENTAR BIEN NUESTRO CODIGO
+Definición de los recursos con Bicep, las plantillas de ARM y el proveedor de AzAPI de Terraform
+22/03/2023
+En este artículo
+Elegir idioma
+Bicep
+Plantillas de ARM
+Proveedor AzAPI de Terraform
+Mostrar 2 más
+Al implementar recursos de Azure con una herramienta infraestructura como código, debe comprender qué tipos de recursos están disponibles y qué valores se usarán en los archivos. La documentación de referencia de recursos de Azure proporciona estos valores. La sintaxis se muestra para bicep, JSON de plantilla de ARM y proveedor AzAPI de Terraform.
+
+Elegir idioma
+Seleccione el idioma de implementación que desea usar para ver la referencia de recursos. Las opciones están disponibles en la parte superior de cada artículo.
+
+Seleccionar idioma
+
+Bicep
+Para obtener una introducción al trabajo con archivos de Bicep, consulte Inicio rápido: Creación de archivos de Bicep con Visual Studio Code. Para obtener información sobre las secciones de un archivo de Bicep, consulte Descripción de la estructura y la sintaxis de los archivos de Bicep.
+
+Para más información sobre los archivos de Bicep mediante un conjunto guiado de módulos de Learn, consulte Implementación y administración de recursos en Azure mediante Bicep.
+
+Microsoft recomienda usar VS Code para crear archivos de Bicep. Para más información, consulte Instalación de herramientas de Bicep.
+
+Visual Studio Code y la extensión Bicep
+Para crear archivos de Bicep, necesitará un buen editor de Bicep. Es recomendable que:
+
+Visual Studio Code: si aún no tiene Visual Studio Code, instálelo.
+
+Extensión Bicep para Visual Studio Code. Visual Studio Code con la extensión de Bicep proporciona compatibilidad con el lenguaje y la finalización automática de recursos. La extensión le ayuda a crear y validar archivos de Bicep.
+
+Para instalar la extensión, busque bicep en la pestaña Extensiones o en Visual Studio Marketplace.
+
+Seleccione Instalar.
+
+Captura de pantalla de la instalación de la extensión Bicep.
+
+Para comprobar que ha instalado la extensión, abra cualquier archivo con la extensión de archivo .bicep. Debería ver que el modo de lenguaje en la esquina inferior derecha cambia a Bicep.
+
+Captura de pantalla del modo de lenguaje de Bicep.
+
+Si recibe un error durante la instalación, consulte Solución de problemas de la instalación de Bicep.
+
+Puede implementar los archivos de Bicep directamente desde el editor de Visual Studio Code. Para obtener más información, consulte Implementación de archivos de Bicep con Visual Studio Code.
+
+Configuración de la extensión de Bicep
+Para ver la configuración:
+
+En el menú View, seleccione Extensions.
+
+Seleccione Bicep en la lista de extensiones.
+
+Seleccione la pestaña FEATURE CONTRIBUTIONS:
+
+Captura de pantalla de la configuración de la extensión Bicep.
+
+La extensión de Bicep tiene estas opciones de configuración y valores predeterminados:
+
+ID	Valor predeterminado	Descripción
+bicep.decompileOnPaste	true	Convierta automáticamente valores JSON pegados, plantillas de ARM o recursos de JSON de una plantilla de ARM de JSON en Bicep (use Deshacer para revertir el proceso). Para obtener más información, consulte el comando Pegar JSON como comando Bicep.
+bicep.enableOutputTimestamps	true	Anteponga cada línea mostrada en el canal de salida de operaciones de Bicep con una marca de tiempo.
+bicep.suppressedWarnings		Advertencias que se han suprimido porque se ha presionado un botón de "No volver a mostrar". Quite elementos para restablecer.
+bicep.enableSurveys	true	Habilite encuestas ocasionales para recopilar comentarios que nos ayuden a mejorar la extensión de Bicep.
+bicep.completions.getAllAccessibleAzureContainerRegistries	false	Al completar las referencias del módulo "br:", consulte Azure para todos los registros de contenedor accesibles para el usuario (esta operación puede ser lenta). Si esta opción está desactivada, solo se mostrarán los registros configurados en moduleAliases en bicepconfig.jsonarchivos.
+bicep.trace.server	apagado	Configure el seguimiento de mensajes enviados al servidor de lenguaje Bicep.
+Para establecer la configuración:
+
+En el menú Archivo, seleccione Preferencias y, después, Configuración.
+
+Expanda Extensiones para seleccionar Bicep:
+
+Captura de pantalla de la configuración de los valores de la extensión Bicep.
+
+Extensión de Visual Studio y Bicep
+Para crear un archivo de Bicep desde Visual Studio, necesita:
+
+Visual Studio: si aún no tiene Visual Studio, instálelo.
+Extensión Bicep para Visual Studio. Visual Studio con la extensión de Bicep proporciona compatibilidad con el lenguaje y la finalización automática de recursos. La extensión le ayuda a crear y validar archivos de Bicep. Instale la extensión en Visual Studio Marketplace.
+Para revisar un tutorial, consulte Inicio rápido: Creación de archivos Bicep con Visual Studio.
+
+Azure CLI
+Al usar la CLI de Azure con Bicep, tiene todo lo que necesita para implementar y descompilar archivos de Bicep. La CLI de Azure instala automáticamente la CLI de Bicep cuando se ejecuta un comando que la necesita.
+
+Debe tener instalada la CLI de Azure, versión 2.20.0 o posterior. Para instalar o actualizar la CLI de Azure en diferentes sistemas operativos, consulte:
+
+Instalación en Windows
+Instalación en Linux
+Instalación en macOS
+Para comprobar su versión actual, ejecute:
+
+Azure CLI
+
+Copiar
+az --version
+Para validar la instalación de la CLI de Bicep, use:
+
+Azure CLI
+
+Copiar
+az bicep version
+Para actualizar a la versión más reciente, use:
+
+Azure CLI
+
+Copiar
+az bicep upgrade
+Para más comandos, consulte la CLI de Bicep.
+
+ Importante
+
+La CLI de Azure instala una instancia independiente de la CLI de Bicep. Esta instancia no entra en conflicto con ninguna versión que pueda haber instalado manualmente. La CLI de Azure no agrega la CLI de Bicep a PATH.
+
+Ya ha terminado con la configuración del entorno de Bicep. En el resto de este artículo se describen los pasos de instalación que no necesita al usar la CLI de Azure.
+
+Azure PowerShell
+Debe tener instalado Azure PowerShell, versión 5.6.0 o posterior. Para actualizar o instalar, consulte Instalación de Azure PowerShell.
+
+Azure PowerShell no instala automáticamente la CLI de Bicep. En su lugar, tiene que instalar manualmente la CLI de Bicep.
+
+ Importante
+
+La instancia independiente de la CLI de Bicep instalada por CLI de Azure no está disponible para los comandos de PowerShell. Las implementaciones de Azure PowerShell producirán un error si no ha instalado manualmente la CLI de Bicep.
+
+Cuando instale manualmente la CLI de Bicep, ejecute los comandos de Bicep con la sintaxis bicep, en lugar de la sintaxis az bicep para CLI de Azure.
+
+Para comprobar la versión de la CLI de Bicep, ejecute:
+
+Símbolo del sistema de Windows
+
+Copiar
+bicep --version
+Instalación manual
+Los métodos siguientes instalan la CLI de Bicep y la agregan a la variable PATH. Debe instalar manualmente para cualquier uso distinto de la CLI de Azure.
+
+Al realizar la instalación de forma manual, seleccione una ubicación diferente a la administrada por la CLI de Azure. En todos los ejemplos siguientes se usa una ubicación denominada bicep o .bicep. Esta ubicación no entra en conflicto con la ubicación administrada por la CLI de Azure, que usa .azure.
+
+Linux
+macOS
+Windows
+Linux
+sh
+
+Copiar
+# Fetch the latest Bicep CLI binary
+curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+# Mark it as executable
+chmod +x ./bicep
+# Add bicep to your PATH (requires admin)
+sudo mv ./bicep /usr/local/bin/bicep
+# Verify you can now access the 'bicep' command
+bicep --help
+# Done!
+ Nota
+
+En el caso de distribuciones ligeras de Linux, como Alpine, use bicep-linux-musl-x64, en lugar de bicep-linux-x64, en el script anterior.
+
+macOS
+Mediante Homebrew
+sh
+
+Copiar
+# Add the tap for bicep
+brew tap azure/bicep
+
+# Install the tool
+brew install bicep
+Mediante BASH
+sh
+
+Copiar
+# Fetch the latest Bicep CLI binary
+curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-osx-x64
+# Mark it as executable
+chmod +x ./bicep
+# Add Gatekeeper exception (requires admin)
+sudo spctl --add ./bicep
+# Add bicep to your PATH (requires admin)
+sudo mv ./bicep /usr/local/bin/bicep
+# Verify you can now access the 'bicep' command
+bicep --help
+# Done!
+ Nota
+
+Una instalación 0.16.X o posterior de la CLI de Bicep no necesita una excepción de Gatekeeper. Sin embargo, las compilaciones nocturnas de la CLI de Bicep todavía requieren la excepción.
+
+Windows
+Windows Installer
+Descargue y ejecute la versión más reciente de Windows Installer. El instalador no requiere privilegios administrativos. Después de la instalación, la CLI de Bicep se agrega a la RUTA de acceso del usuario. Cierre las ventanas del shell de comandos que estén abiertas y vuelva a abrirlas para que el cambio de la variable PATH surta efecto.
+
+Chocolatey
+PowerShell
+
+Copiar
+choco install bicep
+Winget
+PowerShell
+
+Copiar
+winget install -e --id Microsoft.Bicep
+Manual con PowerShell
+PowerShell
+
+Copiar
+# Create the install folder
+$installPath = "$env:USERPROFILE\.bicep"
+$installDir = New-Item -ItemType Directory -Path $installPath -Force
+$installDir.Attributes += 'Hidden'
+# Fetch the latest Bicep CLI binary
+(New-Object Net.WebClient).DownloadFile("https://github.com/Azure/bicep/releases/latest/download/bicep-win-x64.exe", "$installPath\bicep.exe")
+# Add bicep to your PATH
+$currentPath = (Get-Item -path "HKCU:\Environment" ).GetValue('Path', '', 'DoNotExpandEnvironmentNames')
+if (-not $currentPath.Contains("%USERPROFILE%\.bicep")) { setx PATH ($currentPath + ";%USERPROFILE%\.bicep") }
+if (-not $env:path.Contains($installPath)) { $env:path += ";$installPath" }
+# Verify you can now access the 'bicep' command.
+bicep --help
+# Done!
+Instalación en una nube aislada
+Los comandos bicep install y bicep upgrade no funcionan en un entorno aislado. Para instalar la CLI de Bicep en un entorno aislado, debe descargar manualmente el ejecutable de la CLI de Bicep y guardarlo en .azure/bin. Esta ubicación es donde está instalada la instancia administrada por la CLI de Azure.
+
+Linux
+
+Descargue bicep-linux-x64 desde la página de la versión de Bicep en un entorno no aislado.
+Copie el ejecutable en el directorio $HOME/.azure/bin en una máquina aislada. Cambie el nombre del archivo a bicep.
+macOS
+
+Descargue bicep-osx-x64 desde la página de la versión de Bicep en un entorno no aislado.
+Copie el ejecutable en el directorio $HOME/.azure/bin en una máquina aislada. Cambie el nombre del archivo a bicep.
+Windows
+
+Descargue bicep-win-x64.exe desde la página de la versión de Bicep en un entorno no aislado.
+Copie el archivo ejecutable en el directorio %UserProfile%/.azure/bin en una máquina aislada. Cambie el nombre del archivo a bicep.exe.
+Al usar la tarea de la CLI de Azure en la nube aislada, debe establecer la propiedad useGlobalConfig de la tarea en true. El valor predeterminado es false. Consulte CI/CD con Azure Pipelines y archivos de Bicep para ver un ejemplo.
+
+Instalación de las compilaciones nocturnas
+Si quiere probar las compilaciones más recientes de Bicep antes de su lanzamiento, consulte Instalación de compilaciones nocturnas.
+
+ Advertencia
+
+Estas compilaciones previas al lanzamiento tienen muchas más probabilidades de incluir errores conocidos o desconocidos.
+
+Instalación del paquete NuGet.
+El equipo de Bicep ha puesto el paquete NuGet Azure.Bicep.Core como disponible públicamente en nuget.org. Aunque es público, no es un paquete compatible. Cualquier dependencia que tome en este paquete se realizará a su propio riesgo y nos reservamos el derecho de insertar cambios importantes en este paquete en cualquier momento.
+
+Para obtener más información sobre cómo instalar y consumir paquetes NuGet, consulte Consumo de paquetes.
+
+Pasos siguientes
+Para obtener más información sobre el uso de Visual Studio Code y la extensión Bicep, consulte Inicio rápido: Creación de plantillas de archivos de Bicep con Visual Studio Code.
+
+Si tiene problemas con la instalación de Bicep, consulte Solución de problemas de la instalación de Bicep.
+
+Para implementar archivos Bicep desde una canalización de Azure, consulte Integración de Bicep con Azure Pipelines. Para implementar archivos Bicep con Acciones de GitHub, consulte Implementación de archivos Bicep mediante Acciones de GitHub.
+
+Instalación y configuración de Azure Cli
+Se utiliza para no tener que ir al portal siempre
+
+
+Uso de Azure Claude Shell : Integración y comandos en el portal Azure
+
+Al configurar ponemos montar una cuenta de almacenamiento
+
+
+automatización de despliegue en azure con bicep y terraform
+
+Investigar y poner pasos a continuación:
+
+
+Monitoreo de Azure Service Health para Administradores de Nube
+podemos monitorear estados de salud de servicios dentro de las diferentes regiones o centros de datos llendo a esta url: www.azure.status.microsoft/en-us/status
+
+
+
+
+Optimización del trabajo en la Nube
+
+Portal para configurar directivas de seguridad
+entra.microsoft.com/#home
+
+speech.microsoft.com
+
+
+Azure AI Foundri | Azure Ai Portal
+tus servicios de AI en azure
+
+Azure Machine Learning Studio
+para desarrollador modelos de IA para machine learning
+
+Azure Data Factory
+
+
+
+IMPLEMENTACION DE APLICACIONES SERVERLESS EN AZURE
+
+EN LA PARTE FINAL COMO USUARIOS NOS INTERESA NO TENGO QUE PREOCUPARME DE NINGUNA PIESA DE LOS SERVIDORES
+
+PRIMER PASO CREAMOS UN GRUPO 
+SEGUNDO PASO CREAMOS UNA CUENTA DE ALMACENAMIENTO
+
+UNA VEZ SE DESPLIEGA MI CUENTA 
+TERCER PASO CREAR UNA FUNCION CON UN QUERY ESPECIFICA PARA CREAR UN AMBIENTE SERVERLESS
+AL IR AL PORTAL VEREMOS DENTRO DEL GRUPO LA FUNCTION APP
+ 
+Para redirigir el tráfico de un dominio a una dirección específica en Azure, ¿qué tipo de registro DNS deberías crear?
+Creación y gestión de zonas DNS en Azure paso a paso
+Clase: Creación y gestión de zonas DNS en Azure paso a paso
+Elige la respuesta correcta
+
+Respuesta correcta:
+Registro A
+
